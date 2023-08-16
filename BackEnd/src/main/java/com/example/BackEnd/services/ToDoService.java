@@ -14,15 +14,14 @@ public class ToDoService {
     public ToDo saveToDo(ToDo todo){
         return repository.save(todo);
     }
-    public ToDo getById(int Id){
-        return repository.findById(Id).get();
+    public ToDo getById(int id){
+        return repository.findById(id).get();
     }
     public List<ToDo> getAll(){
         return repository.findAll();
     }
-    public void deleteById(int Id){
-        // System.out.println("We are inside delete in service ======================================================================================== ");
-        repository.deleteById(Id);
+    public void deleteById(int id){
+          repository.deleteById(id);
     }
 
     public void deleteAll() {

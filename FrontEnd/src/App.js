@@ -4,7 +4,6 @@ import './App.css';
 const App = () => {
   const [inputValue, setInputValue] = useState('');
   const [tasks, setTask] = useState([])
-  const [selected, setSelected] = useState('')
   const [priorities, setPriorities] = useState('');
   const [priority, setPriority] = useState(['High', 'Medium', 'Low'])
   const [seconds, setSeconds] = useState('');
@@ -26,31 +25,32 @@ const App = () => {
         return response.json()
       })
       .then(data => {
-        console.log(data)
+        // console.log(data)
         setTask(data)
       })    
       
   }
 
-  const deleteById = (task) => {
-    
-    fetch(`http://localhost:8080/todos/delete/${task.id}`, {
-      method: "DELETE"
+const deleteById = (task) => {
+  fetch(`http://localhost:8080/todos/delete/${task.id}`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      // Do not attempt to parse response as JSON
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-      })
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error("Error deleting:", error);
-      });
-  };
+    .then(() => {
+      console.log("Deleted successfully");
+      // Update your UI to reflect the successful deletion
+    })
+    .catch((error) => {
+      console.error("Error deleting:", error);
+    });
+};
+
+
 
   const deleteAll = () => {
     fetch("http://localhost:8080/todos/deleteAll", {
@@ -60,7 +60,7 @@ const App = () => {
         return res.json();
       })
       .then(data => {
-        console.log(data);
+        // console.log(data);
       })
       .catch(error => {
         console.error("Error deleting:", error);
@@ -99,42 +99,30 @@ const App = () => {
       alert("Check your inputs")
     }
   };
-  //   const [_status, _setStatus] = useState({ status: true });
-  //  // _setStatus(prevTasking => ({
-  //     //   ...prevTasking,
-  //     //   status: !prevTasking.status
-  //     // }));
-  //     // let data = {
-  //     //   todo: task.todo,
-  //     //   status: _status.status,
-  //     //   priority: task.priority
 
-  //     // }
+  const handleCheck = (task) => {
+    const updatedTask = { ...task, status: !task.status };
 
-  //     // console.log(data);
-  const handleCheck = (task) => {  
-    const updatedTask = { ...task, status: !task.status }; // Toggle the status
-   
-    console.log(updatedTask)
+    // console.log(updatedTask) http://localhost:8080/todos/delete/1
     fetch(`http://localhost:8080/todos/save`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedTask)
+      body: JSON.stringify(updatedTask),
     })
-      .then(res => {
+      .then((res) => {
         if (res.ok) {
           return res.json();
         } else {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
       })
-      .then(data => {
-        console.log("Updated task:", data);
+      .then((data) => {
+        // console.log("Updated task:", data);
         // You can update your task list or perform other actions as needed
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error updating:", error);
       });
     fetchData();

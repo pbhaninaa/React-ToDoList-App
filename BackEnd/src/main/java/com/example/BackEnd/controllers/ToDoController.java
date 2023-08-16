@@ -25,9 +25,9 @@ public class ToDoController {
         return service.getById(id);
     }
     @DeleteMapping("/delete/{id}")
-    public void  delete(@PathVariable int Id){
-        System.out.println("We are inside delete ======================================================================================== ");
-        service.deleteById(Id);
+    public void  delete(@PathVariable int id){
+        System.out.println("======================================= We are inside delete ======================================================================================== ");
+        service.deleteById(id);
     }
     @DeleteMapping("/deleteAll")
     public void deleteAll(){
