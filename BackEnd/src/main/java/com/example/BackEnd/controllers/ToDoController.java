@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("todos/")
 public class ToDoController {
     @Autowired
@@ -26,8 +26,7 @@ public class ToDoController {
     }
     @DeleteMapping("/delete/{id}")
     public void  delete(@PathVariable int id){
-        System.out.println("======================================= We are inside delete ======================================================================================== ");
-        service.deleteById(id);
+    service.deleteById(id);
     }
     @DeleteMapping("/deleteAll")
     public void deleteAll(){

@@ -9,7 +9,7 @@ const App = () => {
   const [seconds, setSeconds] = useState('');
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
-  
+
 
   useEffect(() => {
     fetchData();
@@ -27,28 +27,28 @@ const App = () => {
       .then(data => {
         // console.log(data)
         setTask(data)
-      })    
-      
+      })
+
   }
 
-const deleteById = (task) => {
-  fetch(`http://localhost:8080/todos/delete/${task.id}`, {
-    method: "DELETE",
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      // Do not attempt to parse response as JSON
+  const deleteById = (task) => {
+    fetch(`http://localhost:8080/todos/delete/${task.id}`, {
+      method: "DELETE",
     })
-    .then(() => {
-      console.log("Deleted successfully");
-      // Update your UI to reflect the successful deletion
-    })
-    .catch((error) => {
-      console.error("Error deleting:", error);
-    });
-};
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        // Do not attempt to parse response as JSON
+      })
+      .then(() => {
+        console.log("Deleted successfully");
+        // Update your UI to reflect the successful deletion
+      })
+      .catch((error) => {
+        console.error("Error deleting:", error);
+      });
+  };
 
 
 
@@ -140,14 +140,14 @@ const deleteById = (task) => {
   }
   function handleClock() {
     const now = new Date();
-    setDate(now.getDate() + "/" + 
-    (now.getMonth()+1)   + "/" + 
-    now.getFullYear());
+    setDate(now.getDate() + "/" +
+      (now.getMonth() + 1) + "/" +
+      now.getFullYear());
 
     setSeconds(now.getSeconds());
 
     setTime(`${now.getHours()}:
-    ${now.getMinutes() < 10 ? "0"+now.getMinutes() : now.getMinutes()}:
+    ${now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()}:
     ${now.getSeconds()}`);
   }
   return (
@@ -155,6 +155,14 @@ const deleteById = (task) => {
       {tasks.length > 0 && (
         <div className="tasks">
           <h4>LIST OF TASK TO BE DONE</h4>
+          <div className="details">
+            <div className="low" >
+              Low
+            </div>
+            <div className="medium">Medium</div>
+            <div className="high">High</div>
+            <h1 style={{ textDecoration: 'line-through' }}>Done</h1>
+          </div>
           <input type="button" id='deleteAll' value='Delete All' onClick={deleteAll} />
           <div className='heard'>
             <div className='dividetask' id='TaskCol'><p>Task</p></div>
@@ -163,24 +171,31 @@ const deleteById = (task) => {
             <div className='dividetask' id='BtnCol'><p>Remove</p></div>
           </div>
           {tasks.map(task => (
-            <div className='task' key={task.id}>
-              <div className='dividetask' id='TaskCol'><h5>{task.todo}</h5> </div>
+            <div className='task' key={task.id} style={{
+              backgroundColor:
+                task.priority === 'High'
+                  ? 'darkred'
+                  : task.priority === 'Medium'
+                    ? 'darkgoldenrod'
+                    : 'darkgreen',
+            }}>
+              <div className='dividetask' id='TaskCol'><h5 style={task.status ? { textDecoration: 'line-through' } : {}}>{task.todo}</h5> </div>
               <div className='dividetask' id='statusCol'><h5>{task.status ? "Done" : "Pending"}</h5> </div>
-              <div className='dividetask' id='statusCol'><h5>{task.priority == 'Select' ? 'Not Set' : task.priority}</h5>
+              <div className='dividetask' id='statusCol'><h5 style={task.status ? { textDecoration: 'line-through' } : {}}>{task.priority == 'Select' ? 'Not Set' : task.priority}</h5>
               </div>  <div className='dividetask'>
-                <input type="checkbox" value={task.status} onChange={() => handleCheck(task)} />
+                <input type="checkbox" value={task.status} checked={task.status} onChange={() => handleCheck(task)} />
               </div>
               <div className='dividetask' id='BtnCol'><h5><input type="button" value='Delete' onClick={() => deleteById(task)} /></h5>
               </div>
             </div>
           ))}
-        </div>      
+        </div>
 
       )}
-       <span className="time">       
-          <h5>Date : {date}</h5>
-          <h5>Time : {time}</h5>
-        </span>
+      <span className="time">
+        <h5>Date : {date}</h5>
+        <h5>Time : {time}</h5>
+      </span>
       <select className="select" value={priorities} onChange={handleOptionChange}>
         <option >
           Select priority of the task you are adding
@@ -197,7 +212,7 @@ const deleteById = (task) => {
       </div>
       <div>
         <h3>SAVE THE TASKS THAT YOU WILL BE DOING TODAY.</h3>
-        
+
       </div>
 
     </div>

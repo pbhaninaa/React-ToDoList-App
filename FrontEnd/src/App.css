@@ -18,6 +18,7 @@
   align-items: center;
   width: 100%;
 }
+
 .error {
   display: flex;
   justify-content: center;
@@ -26,6 +27,61 @@
   height: 100px;
   background-color: rgb(118, 118, 51);
 
+}
+
+.details {
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1%;
+  background-color: aquamarine;
+  height: 40px;
+  margin-bottom: 1%;
+  border-radius: 12px;
+}
+
+.low {
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130%;
+  width: 9%;
+  background-color: darkgreen;
+  border-radius: 50%;
+  margin-top: 2%;
+  font-size: 12px
+}
+
+.medium {
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130%;
+  width: 9%;
+  background-color: darkgoldenrod;
+  border-radius: 50%;
+  margin-top: 2%;
+  font-size: 12px
+}
+
+.high {
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130%;
+  width: 9%;
+  background-color: darkred;
+  border-radius: 50%;
+  margin-top: 2%;
+  font-size: 12px
+}
+
+h1 {
+  color: darkgreen
 }
 
 .dividetask {
@@ -43,10 +99,12 @@
 #statusCol {
   text-align: left;
 }
-#done{
+
+#done {
   width: 50px;
   border-radius: 0px 10px 0px 10px;
 }
+
 #BtnCol {
   text-align: right;
   align-items: right;
@@ -85,10 +143,12 @@
   border-radius: 10px;
   margin: 2%;
 }
-.time{
+
+.time {
   gap: 20px;
   display: flex;
 }
+
 .heard {
   display: flex;
   justify-content: center;
@@ -152,11 +212,13 @@ input[type="button"]:hover {
   border: none;
   border-radius: 0px 5px;
 }
-h5{
+
+h5 {
   color: aquamarine;
-  font-family:'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 18px;
 }
+
 h3 {
   color: aliceblue;
   font-size: x-large;
@@ -177,7 +239,7 @@ p {
 
   .tasks {
     width: 50%;
-    background-color:aquamarine;
+    background-color: aquamarine;
     border-radius: 10px;
     padding: 1%;
     margin-bottom: 5%;
@@ -215,6 +277,7 @@ p {
     border: none;
     outline: none;
   }
+
   p {
     color: aliceblue;
     text-transform: uppercase;
@@ -261,7 +324,8 @@ p {
     color: aliceblue;
     border-radius: 10px 0px 10px 10px;
   }
- .select {
+
+  .select {
     padding-left: 2%;
     height: 41px;
     width: 45%;
@@ -269,6 +333,7 @@ p {
     border: none;
     outline: none;
   }
+
   h5 {
     font-weight: 100;
   }
@@ -278,7 +343,8 @@ p {
     text-transform: lowercase;
 
   }
-  @media screen and (max-width: 370px){
+
+  @media screen and (max-width: 370px) {
 
     .tasks {
       width: 95%;
@@ -287,6 +353,7 @@ p {
       padding: 1%;
       margin-bottom: 5%;
     }
+
     .task {
       display: flex;
       justify-content: center;
@@ -298,6 +365,7 @@ p {
       border-radius: 10px;
       margin: 2%;
     }
+
     .heard {
       display: flex;
       justify-content: center;
@@ -308,19 +376,21 @@ p {
       background-color: darkcyan;
       color: aliceblue;
       border-radius: 10px 0px 10px 10px;
-    }  
-    .select{
+    }
+
+    .select {
       padding-left: 2%;
       height: 41px;
       width: 45%;
       border-radius: 10px;
       border: none;
       outline: none;
-    } 
-     p{
+    }
+
+    p {
       color: aliceblue;
       text-transform: lowercase;
-      
+
     }
   }
 }
