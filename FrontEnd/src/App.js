@@ -77,7 +77,7 @@ const App = () => {
     ststus: false
   }
   const saveTodo = () => {
-    if (data.todo != '' || data.priority != '') {
+    if (data.todo != '' && data.priority != '') {
       fetch("http://localhost:8080/todos/save", {
         method: "POST",
         headers: {
